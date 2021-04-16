@@ -1,17 +1,54 @@
 import json 
 
-liste = []
+
 def inscprition():
+    dico = {"nom":"","email":"","password":""}
+    
+    with open('database.json','r') as f:
+        liste = json.load(f)
+        liste.append(dico)
+    
     nom = input('Nom :')
     email = input('Email :')
-    password = input('Password :')
-    liste.append(nom)
-    liste.append(password)
+    password = str(input('Password :'))
+
+    dico["nom"]= nom
+    dico["password"] = password
+
+    for mail in liste:
+        if email == mail["email"]:
+            print("existe")
+        else:
+            
+
+
+
+    with open('database.json','w') as f:
+            json.dump(liste,f)
+            
+            
+
+            
+        
+    
     
 
-    
+
+
 def connexion():
-    print('connexion')
+    with open('database.json','r') as f:
+        liste = json.load(f)
+    # print(s)
+
+    email = input('Email :')
+    password = str(input('Password :'))
+
+    if email and password in s:
+        print('Bienvenu vous etre connecté')
+    else:
+        print("veuillez vous inscrit")
+        menu()
+            
 
 def menu():
     print("1: inscription - 2: connexion")
@@ -26,10 +63,4 @@ def menu():
         print(" Veuillez Entrez 1 pour inscription ou 2 pour vous connecté ")
 
 menu()
-with open('database.json' ,'w') as f :
-    s= json.dump(liste,f)
 
-if email in s:
-        print('ce mail existe')
-else:
-    liste.append(email) 
